@@ -1,0 +1,130 @@
+CREATE DATABASE BLINKIT;
+
+USE BLINKIT;
+
+SELECT * FROM `blinkit dataset`;
+
+/* | KPI CARD 1 : TOTAL SALES | */
+
+SELECT concat("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES 
+FROM `blinkit dataset`;
+
+/* | KPI CARD 2 : AVG SALES | */
+
+SELECT CONCAT("$ ", ROUND(AVG(`Sales`),0)) AS AVGSALES
+FROM `blinkit dataset`;
+
+/* | KPI CARD 3 : NO OF ITEM | */
+
+SELECT COUNT(`Item Type`) AS NO_OF_ITEM
+FROM `blinkit dataset`;
+
+/* | KPI CARD 4 : AVG RATING | */
+
+SELECT ROUND(AVG(`Rating`),1) AS AVGRATING
+FROM `blinkit dataset`;
+
+/* KPI 1 : FAT CONTENT BY TOTAL SALES */
+
+SELECT `﻿Item Fat Content` AS FAT_CONTENT, CONCAT("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES
+FROM `blinkit dataset`
+GROUP BY FAT_CONTENT;
+
+/* KPI 1 : FAT CONTENT BY AVG SALES */
+
+SELECT `﻿Item Fat Content` AS FAT_CONTENT, CONCAT("$ ",ROUND(AVG(`Sales`),0)) AS AVGSALES
+FROM `blinkit dataset`
+GROUP BY FAT_CONTENT;
+
+/* KPI 1 : FAT CONTENT BY NO OF ITEMS */
+
+SELECT `﻿Item Fat Content` AS FAT_CONTENT, COUNT(`Item Type`) AS NO_OF_ITEM
+FROM `blinkit dataset`
+GROUP BY FAT_CONTENT;
+
+/* KPI 1 : FAT CONTENT BY AVG RATING */ 
+
+SELECT `﻿Item Fat Content` AS FAT_CONTENT, ROUND(AVG(`Rating`),1) AS AVGRATING
+FROM `blinkit dataset`
+GROUP BY FAT_CONTENT;
+
+/* KPI 1 : TOTAL SALES OF FAT BY OUTLET */
+
+SELECT `Outlet Location Type` AS OUTLET, `﻿Item Fat Content` AS FAT_CONTENT, 
+CONCAT("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES
+FROM `blinkit dataset`
+GROUP BY OUTLET, FAT_CONTENT;
+
+/* KPI 1 : AVG SALES OF FAT BY OUTLET */
+
+SELECT `Outlet Location Type` AS OUTLET, `﻿Item Fat Content` AS FAT_CONTENT, 
+CONCAT("$ ",ROUND(AVG(`Sales`),0)) AS AVGSALES
+FROM `blinkit dataset`
+GROUP BY OUTLET, FAT_CONTENT;
+
+/* KPI 1 : NO OF ITEM OF FAT BY OUTLET */
+
+SELECT `Outlet Location Type` AS OUTLET, `﻿Item Fat Content` AS FAT_CONTENT, 
+COUNT(`Item Type`) AS NO_OF_ITEM
+FROM `blinkit dataset`
+GROUP BY OUTLET, FAT_CONTENT;
+
+/* KPI 1 : AVG RATING OF FAT BY OUTLET */ 
+
+SELECT `Outlet Location Type` AS OUTLET, `﻿Item Fat Content` AS FAT_CONTENT, 
+ROUND(AVG(`Rating`),1) AS AVGRATING
+FROM `blinkit dataset`
+GROUP BY OUTLET, FAT_CONTENT;
+
+/* KPI 1 : ITEM TYPE BY TOTAL SALES */
+
+SELECT `Item Type` AS ITEM_TYPE, CONCAT("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES
+FROM `blinkit dataset`
+GROUP BY ITEM_TYPE;
+
+/* KPI 1 : ITEM TYPE BY AVG SALES */
+
+SELECT `Item Type` AS ITEM_TYPE, CONCAT("$ ",ROUND(AVG(`Sales`),0)) AS AVGSALES
+FROM `blinkit dataset`
+GROUP BY ITEM_TYPE;
+
+/* KPI 1 : ITEM TYPE BY NO OF ITEM */
+
+SELECT `Item Type` AS ITEM_TYPE, COUNT(`Item Type`) AS NO_OF_ITEM
+FROM `blinkit dataset`
+GROUP BY ITEM_TYPE;
+
+/* KPI 1 : ITEM TYPE BY AVG RATING */
+
+SELECT `Item Type` AS ITEM_TYPE, ROUND(AVG(`Rating`),1) AS AVGRATING
+FROM `blinkit dataset`
+GROUP BY ITEM_TYPE;
+
+/* KPI 2 : OUTLET ESTABLISHMENT WISE TOTAL SALES */ 
+
+SELECT `Outlet Establishment Year` AS YEAR, 
+CONCAT("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES
+FROM `blinkit dataset`
+GROUP BY YEAR;
+
+/* KPI 3 : OUTLET SIZE WISE SALES */
+
+SELECT `Outlet Size` AS OUTLET_SIZE, CONCAT("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES
+FROM `blinkit dataset`
+GROUP BY OUTLET_SIZE;
+
+/* KPI 4 : OUTLET LOCATION WISE SALES */
+
+SELECT `Outlet Location Type` AS OUTLET_LOCATION,
+CONCAT("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES
+FROM `blinkit dataset`
+GROUP BY OUTLET_LOCATION;
+
+/* KPI 5 : OUTLET TYPE WAISE TOTAL SALES, NO OF ITEM, AVG SALES, AVG RATING, 
+           ITEM VISIBILITY */
+           
+SELECT `Outlet Type` AS OUTLET_TYPE, CONCAT("$ ",ROUND(SUM(`Sales`),0)) AS TOTALSALES,
+COUNT(`Item Type`) AS NO_OF_ITEM, CONCAT("$ ",ROUND(AVG(`Sales`),0)) AS AVGSALES,
+ROUND(AVG(`Rating`),1) AS AVGRATING, ROUND(AVG(`Item Visibility`),2) AS ITEM_VISIBILITY
+FROM `blinkit dataset`
+GROUP BY OUTLET_TYPE;
